@@ -1,40 +1,32 @@
 package entornos.git2;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class Comanda {
-    private Integer codigo;
-    private Integer mesa;
-    private ArrayList<Plato> platos;
+    private HashMap<String, Integer> platos;
+    private Menu menu;
 
-    public Comanda(Integer codigo, Integer mesa, ArrayList<Plato> platos) {
-        this.codigo = codigo;
-        this.mesa = mesa;
-        this.platos = platos;
+    public Comanda(Menu menu) {
+        this.menu = menu;
+        this.platos = new HashMap<>();
     }
 
-    public Integer getCodigo() {
-        return codigo;
+    public void agregarPlatoComanda(String nombrePlato) {
+        int count = platos.containsKey(nombrePlato) ? platos.get(nombrePlato) : 0;
+        platos.put(nombrePlato, count + 1);
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public double calcularTotalComanda() {
+        double total = 0;
+        for (String plato : platos.keySet()) {
+            total += menu.getPrecio(plato) * platos.get(plato);
+        }
+        return total;
     }
 
-    public Integer getMesa() {
-        return mesa;
-    }
-
-    public void setMesa(Integer mesa) {
-        this.mesa = mesa;
-    }
-
-    public List<Plato> getPlatos() {
-        return platos;
-    }
-
-    public void setPlatos(ArrayList<Plato> platos) {
-        this.platos = platos;
+    public void mostrarComanda() {
+        for (String plato : platos.keySet()) {
+            System.out.println(plato + ": " + platos.get(plato));
+        }
     }
 }

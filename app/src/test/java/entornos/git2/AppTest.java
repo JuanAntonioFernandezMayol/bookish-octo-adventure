@@ -7,19 +7,52 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    // @test
-    // void gestionarMenu() {
-    // App classUnderTest = new App();
-    // assertEquals(classUnderTest, classUnderTest);
-    // assertEquals(classUnderTest, classUnderTest);
-    // assertEquals(classUnderTest, classUnderTest);
-    // }
+    @Test
+    public void testAgregarPlato() {
+        Menu menu = new Menu();
+        menu.agregarPlato("Paella", 15.0);
+        assertEquals(15.0, menu.getPrecio("Paella"));
+    }
 
-    // @test
-    // void gestionarComandas() {
-    // App classUnderTest = new App();
-    // assertEquals(classUnderTest, classUnderTest);
-    // assertEquals(classUnderTest, classUnderTest);
-    // assertEquals(classUnderTest, classUnderTest);
-    // }
+    @Test
+    public void testEliminarPlato() {
+        Menu menu = new Menu();
+        menu.agregarPlato("Paella", 15.0);
+        menu.eliminarPlato("Paella");
+        assertNull(menu.getPrecio("Paella"));
+    }
+
+    @Test
+    public void testListarMenu() {
+        Menu menu = new Menu();
+        menu.agregarPlato("Paella", 15.0);
+        menu.listarMenu();
+    }
+
+    @Test
+    public void testAgregarPlatoComanda() {
+        Menu menu = new Menu();
+        menu.agregarPlato("Paella", 15.0);
+        Comanda comanda = new Comanda(menu);
+        comanda.agregarPlatoComanda("Paella");
+    }
+
+    @Test
+    public void testCalcularTotalComanda() {
+        Menu menu = new Menu();
+        menu.agregarPlato("Paella", 15.0);
+        Comanda comanda = new Comanda(menu);
+        comanda.agregarPlatoComanda("Paella");
+        assertEquals(15.0, comanda.calcularTotalComanda());
+    }
+
+    @Test
+    public void testMostrarComanda() {
+        Menu menu = new Menu();
+        menu.agregarPlato("Paella", 15.0);
+        Comanda comanda = new Comanda(menu);
+        comanda.agregarPlatoComanda("Paella");
+        comanda.mostrarComanda();
+    }
+
 }
