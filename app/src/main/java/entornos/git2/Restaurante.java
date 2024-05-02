@@ -1,6 +1,8 @@
 package entornos.git2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Restaurante {
-    public static void main(String[] args) {
-    }
+        private static List<Menu> ListaMenu=new ArrayList<>();
 }
